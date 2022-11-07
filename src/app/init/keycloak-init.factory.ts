@@ -6,9 +6,9 @@ export function initializeKeycloak(
     return () =>
       keycloak.init({
         config: {
-          url: 'http://localhost:8080' + '/auth',
-          realm: 'test',
-          clientId: 'frontend',
+          url: 'http://localhost:8080/realms/master/',
+          realm: 'master',
+          clientId: 'master-realm',
         }
       });
 }
