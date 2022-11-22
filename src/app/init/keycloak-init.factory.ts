@@ -1,4 +1,5 @@
 import { KeycloakService } from "keycloak-angular";
+import * as Keycloak from "keycloak-js";
 
 export function initializeKeycloak(
   keycloak: KeycloakService
@@ -6,9 +7,18 @@ export function initializeKeycloak(
     return () =>
       keycloak.init({
         config: {
-          url: 'http://localhost:8080/realms/master/',
+          url: 'http://localhost:8080',
           realm: 'master',
-          clientId: 'master-realm',
+          clientId: 'angular_spa',
+          
+        },
+        initOptions: {
+    
+          pkceMethod: 'S256', 
+          // must match to the configured value in keycloak
+          redirectUri: 'http://localhost:4200/',   
+          // this will solved the error 
+          checkLoginIframe: true
         }
       });
 }

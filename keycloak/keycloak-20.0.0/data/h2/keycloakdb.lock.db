@@ -1,6 +1,6 @@
 #FileLock
-#Mon Nov 07 22:28:22 CET 2022
-hostName=192.168.1.59
-id=18453fe908bddd4dcd27f3880b574e4abb5ed5e6485
+#Tue Nov 22 12:05:18 CET 2022
+hostName=LAPTOP-Q4SOE4PJ
+id=1849f0381a1c90eab701868ccbbe97ff29cc1cb3d0c
 method=file
-server=192.168.1.59\:55103
+server=169.254.184.136\:55803

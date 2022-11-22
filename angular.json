@@ -66,16 +66,16 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {"headers": {"default-src": "*", "frame-ancestors": "*"}
+          "options": {"headers": {"Content-Security-Policy": "frame-ancestors *", "Access-Control-Allow-Origin": "*"}
           },
           "configurations": {
             "production": {
               "browserTarget": "scrumboard:build:production",
-              "headers": {"default-src": "*", "frame-ancestors": "*"}
+              "headers": {"Content-Security-Policy": "frame-ancestors *", "Access-Control-Allow-Origin": "*" }
             },
             "development": {
               "browserTarget": "scrumboard:build:development",
-              "headers": {"default-src": "*", "frame-ancestors": "*"}
+              "headers": {"Content-Security-Policy": "frame-ancestors *", "Access-Control-Allow-Origin": "*" }
             }
           },
           "defaultConfiguration": "development"

@@ -1,7 +1,8 @@
 var fs = require('fs');
+const path = require('path');
    
 // json file with the data
-var data = fs.readFileSync("./nodejs_backend/scrumboard.json");
+var data = fs.readFileSync("./scrumboard.json");
 var jsonData = JSON.parse(data)
    
 var storypoints = jsonData['storypoints']
@@ -21,8 +22,11 @@ app.use(express.static('public'));
 app.use(cors());
   
 // when get request is made, alldata() is called
+app.get('/', function(req, res)  {
+    res.sendFile('index.html', { root: __dirname });
+  });
 app.get('/storypoints', function(req, res) {res.send(storypoints)});
-app.get('/storyboard', function(req, res) {res.send(storyboards)});
+app.get('/storyboards', function(req, res) {res.send(storyboards)});
 app.post('/storyboard', function(req, res) { const { title, estimation, priority} = req.body
 let storyboard = {
     "id":storyboards.Lenght + 1, 
