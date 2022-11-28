@@ -1,0 +1,23 @@
+version: '3.5' 
+services: 
+   keycloak:
+      image: quay.io/keycloak/keycloak:15.0.1
+      ports:
+        - 8080:8080
+      environment:
+        - KEYCLOAK_USER=admin
+        - KEYCLOAK_PASSWORD=admin
+   angular-service: # The name of the service
+      container_name: angularcontainer  # Container name
+      build: ./ # Location of our Dockerfile
+      volumes: # Volume binding
+        - './Scrumboard:/src/usr/app' 
+      ports:
+        - 4200:4200
+      command: > 
+        bash -c "npm install && ng serve --host 0.0.0.0"
+   nodejs-service:
+      container_name: nodecontainer
+      build: ./nodejs_backend
+      ports:
+        - 3000:3000
