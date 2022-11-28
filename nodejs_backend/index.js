@@ -1,16 +1,20 @@
 var fs = require('fs');
-const path = require('path');
-   
+path = require('path'),    
+filePath = path.join(__dirname, "/scrumboard.json"); 
+console.log(__dirname)
+console.log(filePath) 
 // json file with the data
-var data = fs.readFileSync("./scrumboard.json");
+var data = fs.readFileSync(filePath);
 var jsonData = JSON.parse(data)
    
 var storypoints = jsonData['storypoints']
 var storyboards = jsonData['storyboard']
 
 const express = require("express");
+const createOpaMiddleware = require('./opa')
 const app = express();
 const port = 3000
+const hasPermission = createOpaMiddleware("http://localhost:8181")
    
 // To solve the cors issue
 const cors=require('cors');
@@ -20,9 +24,9 @@ app.listen(port,
     
 app.use(express.static('public'));
 app.use(cors());
-  
+
 // when get request is made, alldata() is called
-app.get('/', function(req, res)  {
+app.get('/', hasPermission('read', 'order'), function(req, res)  {
     res.sendFile('index.html', { root: __dirname });
   });
 app.get('/storypoints', function(req, res) {res.send(storypoints)});
