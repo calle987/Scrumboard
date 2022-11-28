@@ -29,7 +29,7 @@ app.use(cors());
 app.get('/', hasPermission('read', 'order'), function(req, res)  {
     res.sendFile('index.html', { root: __dirname });
   });
-app.get('/storypoints', function(req, res) {res.send(storypoints)});
+app.get('/storypoints',hasPermission('read', 'order'), function(req, res) {res.send(storypoints)});
 app.get('/storyboards', function(req, res) {res.send(storyboards)});
 app.post('/storyboard', function(req, res) { const { title, estimation, priority} = req.body
 let storyboard = {
