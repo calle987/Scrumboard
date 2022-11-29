@@ -1,8 +1,7 @@
 var fs = require('fs');
 path = require('path'),    
 filePath = path.join(__dirname, "/scrumboard.json"); 
-console.log(__dirname)
-console.log(filePath) 
+
 // json file with the data
 var data = fs.readFileSync(filePath);
 var jsonData = JSON.parse(data)
@@ -10,11 +9,19 @@ var jsonData = JSON.parse(data)
 var storypoints = jsonData['storypoints']
 var storyboards = jsonData['storyboard']
 
+const extAuthz = require('@build-security/opa-express-middleware');
 const express = require("express");
-const createOpaMiddleware = require('./opa')
 const app = express();
 const port = 3000
-const hasPermission = createOpaMiddleware("http://localhost:8181")
+
+const extAuthzMiddleware = extAuthz.authorize((req) => ({
+    port: 8181,
+    hostname: 'http://opaserver',
+    policyPath: '/istio/authz/allow',
+}));
+
+bodyParser = require('body-parser');
+app.use(bodyParser.json(), extAuthzMiddleware);
    
 // To solve the cors issue
 const cors=require('cors');
@@ -26,10 +33,10 @@ app.use(express.static('public'));
 app.use(cors());
 
 // when get request is made, alldata() is called
-app.get('/', hasPermission('read', 'order'), function(req, res)  {
+app.get('/', function(req, res)  {
     res.sendFile('index.html', { root: __dirname });
   });
-app.get('/storypoints',hasPermission('read', 'order'), function(req, res) {res.send(storypoints)});
+app.get('/storypoints', function(req, res) {res.send(storypoints)});
 app.get('/storyboards', function(req, res) {res.send(storyboards)});
 app.post('/storyboard', function(req, res) { const { title, estimation, priority} = req.body
 let storyboard = {

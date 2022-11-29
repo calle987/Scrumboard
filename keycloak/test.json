@@ -1,0 +1,31 @@
+{
+  "input": {
+    "request": {
+      "method": "GET",
+      "query": {},
+      "path": "/favicon.ico",
+      "scheme": "http",
+      "host": "localhost",
+      "body": {},
+      "headers": {
+        "host": "localhost:3000",
+        "connection": "keep-alive",
+        "sec-ch-ua": "\"Google Chrome\";v=\"107\", \"Chromium\";v=\"107\", \"Not=A?Brand\";v=\"24\"",
+        "sec-ch-ua-mobile": "?0",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "no-cors",
+        "sec-fetch-dest": "image",
+        "referer": "http://localhost:3000/",
+        "accept-encoding": "gzip, deflate, br",
+        "accept-language": "en-US,en;q=0.9,nl;q=0.8,fr;q=0.7",
+        "cookie": "csrftoken=QZqOwBw20eC7uBSWCOWrhmI21i3j6Ayl; twk_uuid_59474840e9c6d324a47360f9=%7B%22uuid%22%3A%221.HPwB5I7F13JS4rir3r2ZX2jthruHe41sOqG49gu0NFjtcs94Ob9XL9Axq89PmFdsliIhJDQgBmzcu6RM6uI76FKsiy1GgRx00NtrR%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1668605616752%7D"
+      }
+    },
+    "source": { "port": 45640, "ipAddress": "::ffff:172.18.0.1" },
+    "destination": { "port": 3000, "ipAddress": "::ffff:172.18.0.4" },
+    "resources": { "attributes": {} }
+  }
+}
