@@ -1,0 +1,23 @@
+
+name: SBOM generator
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download and install Trivy
+        run: |
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.33.0/trivy_0.33.0_Linux-64bit.deb
+          sudo dpkg -i trivy_0.33.0_Linux-64bit.deb
+      - name: Generate SBOM
+        run: trivy fs --format cyclonedx --security-checks vuln --output sbom.json .
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v3
+        with:
+          name: sbom
+          path: sbom.json
